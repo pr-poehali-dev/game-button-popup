@@ -99,3 +99,129 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Geometry Dash Game Styles */
+.gd-menu {
+  background: linear-gradient(135deg, #87ceeb 0%, #4682b4 50%, #1e90ff 100%);
+  background-image:
+    radial-gradient(
+      circle at 25% 25%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255, 255, 255, 0.02) 10px,
+      rgba(255, 255, 255, 0.02) 20px
+    );
+  animation: gd-bg-float 8s ease-in-out infinite;
+}
+
+@keyframes gd-bg-float {
+  0%,
+  100% {
+    background-position:
+      0% 0%,
+      100% 100%,
+      0 0;
+  }
+  50% {
+    background-position:
+      100% 100%,
+      0% 0%,
+      50px 50px;
+  }
+}
+
+.gd-game-area {
+  cursor: crosshair;
+  user-select: none;
+}
+
+.gd-player {
+  transition: transform 0.1s ease-out;
+  z-index: 10;
+}
+
+.gd-object {
+  transition: all 0.2s ease;
+}
+
+.gd-object:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Game physics animations */
+@keyframes gd-jump {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+  }
+}
+
+@keyframes gd-wave-float {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05);
+  }
+}
+
+@keyframes gd-ship-thrust {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+}
+
+.gd-cube-jumping {
+  animation: gd-jump 0.3s ease-out;
+}
+
+.gd-wave-active {
+  animation: gd-wave-float 0.8s ease-in-out infinite;
+}
+
+.gd-ship-active {
+  animation: gd-ship-thrust 0.15s ease-out;
+}
+
+/* Editor styles */
+.gd-editor-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 25px 25px;
+}
+
+.gd-selected {
+  animation: gd-selection-pulse 1s ease-in-out infinite;
+}
+
+@keyframes gd-selection-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.3);
+  }
+}
